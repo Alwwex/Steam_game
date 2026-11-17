@@ -9,15 +9,17 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "node tools/build.js",
+    "build:dev": "node tools/build.js --dev",
     "watch": "node tools/build.js --watch",
     "start": "npm run build && electron .",
-    "dev": "npm run build && node tools/dev-server.js",
+    "dev": "node tools/build.js --dev && node tools/dev-server.js",
     "server": "node server/relay.js",
-    "test": "npm run build && node tools/test-all.js",
-    "dist": "npm run build && electron-builder --dir",
-    "dist:win": "npm run build && electron-builder --win --dir",
-    "dist:linux": "npm run build && electron-builder --linux --dir",
-    "dist:mac": "npm run build && electron-builder --mac --dir"
+    "test": "node tools/build.js --dev && node tools/test-all.js all",
+    "dist:win": "npm run build && electron-builder --win --x64 --dir",
+    "dist:linux": "npm run build && electron-builder --linux --x64 --dir",
+    "dist:mac": "npm run build && electron-builder --mac --dir",
+    "steam:stage": "node tools/stage-steam.js",
+    "store:assets": "node tools/build.js --dev --preview && node tools/store-assets.js"
   },
   "dependencies": {
     "steamworks.js": "^0.4.0",
@@ -28,5 +30,63 @@
     "electron-builder": "^26.18.0",
     "esbuild": "^0.28.2",
     "three": "^0.187.0"
+  },
+  "build": {
+    "appId": "com.qubitcrew.game",
+    "productName": "Qubit Crew",
+    "executableName": "QubitCrew",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "app/index.html",
+      "app/style.css",
+      "app/game.js",
+      "electron/**",
+      "server/**",
+      "steam_config.json",
+      "package.json"
+    ],
+    "asarUnpack": [
+      "node_modules/steamworks.js/**"
+    ],
+    "electronLanguages": [
+      "en-US",
+      "cs"
+    ],
+    "win": {
+      "target": "dir",
+      "icon": "build/icon.png",
+      "extraFiles": [
+        {
+          "from": "node_modules/steamworks.js/dist/win64/steam_api64.dll",
+          "to": "steam_api64.dll"
+        }
+      ]
+    },
+    "linux": {
+      "target": "dir",
+      "icon": "build/icon.png",
+      "category": "Game",
+      "extraFiles": [
+        {
+          "from": "node_modules/steamworks.js/dist/linux64/libsteam_api.so",
+          "to": "libsteam_api.so"
+        }
+      ]
+    },
+    "mac": {
+      "target": "dir",
+      "icon": "build/icon.png",
+      "category": "public.app-category.games",
+      "extraFiles": [
+        {
+          "from": "node_modules/steamworks.js/dist/osx/libsteam_api.dylib",
+          "to": "MacOS/libsteam_api.dylib"
+        }
+      ]
+    },
+    "publish": null
   }
 }

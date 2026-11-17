@@ -1,0 +1,30 @@
+{
+  "_readme": "Replace appId and every DLC id with the App IDs that Steamworks gives you (see docs/NAVOD_STEAM.md). 480 = Valve's public test app 'Spacewar', useful only for testing lobbies before you have your own App ID. A DLC id of 0 means 'not configured' and that DLC counts as not owned. 'depots' are the depot IDs from Steamworks > SteamPipe > Depots (usually appId+1 for Windows).",
+  "appId": 480,
+  "depots": {
+    "windows": 0,
+    "linux": 0
+  },
+  "dlc": {
+    "dlc01": 0,
+    "dlc02": 0,
+    "dlc03": 0,
+    "dlc04": 0,
+    "dlc05": 0,
+    "dlc06": 0,
+    "dlc07": 0,
+    "dlc08": 0,
+    "dlc09": 0,
+    "dlc10": 0,
+    "dlc11": 0,
+    "dlc12": 0,
+    "dlc13": 0,
+    "dlc14": 0,
+    "dlc15": 0,
+    "dlc16": 0,
+    "dlc17": 0,
+    "dlc18": 0,
+    "dlc19": 0,
+    "dlc20": 0
+  }
+}

@@ -1,0 +1,19 @@
+"AppBuild"
+{
+	"AppID"	"1234560"
+	"Desc"	"Qubit Crew 0.1.0"
+	"ContentRoot"	"..\\content\\"
+	"BuildOutput"	"..\\output\\"
+	"Depots"
+	{
+		"1234561"
+		{
+			"FileMapping"
+			{
+				"LocalPath"	"windows\\*"
+				"DepotPath"	"."
+				"recursive"	"1"
+			}
+		}
+	}
+}

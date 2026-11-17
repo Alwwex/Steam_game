@@ -11,6 +11,7 @@ import { setLang, t } from './i18n.js';
 import { DLC, BASE_KEYS, hatDlc } from './sectors.js';
 import { PROTOCOL, MAX_PLAYERS, DEFAULT_PORT } from './config.js';
 import { FREE_HATS } from './hats.js';
+import * as LEVEL from './level.js';
 
 const SETTINGS_KEY = 'qubitcrew.settings.v1';
 const STATS_KEY = 'qubitcrew.stats.v1';
@@ -403,5 +404,5 @@ class App {
 }
 
 const app = new App();
-if (__DEV__) window.__qc = app;
+if (__DEV__) { window.__qc = app; window.__qcLib = LEVEL; }
 app.boot();
