@@ -1,0 +1,718 @@
+{
+ "base": [
+  {
+   "key": "cryo",
+   "mut": null,
+   "pal": {
+    "wall": "#7f95a6",
+    "low": "#3d4b5a",
+    "floor": "#56626e",
+    "ceil": "#323b46",
+    "mach": "#9db1bf",
+    "accent": "#46e3ff",
+    "lamp": "#c9efff",
+    "fog": "#05080d"
+   },
+   "name": {
+    "en": "Cryo Lab",
+    "cs": "Kryolaboratoř"
+   }
+  },
+  {
+   "key": "photon",
+   "mut": null,
+   "pal": {
+    "wall": "#6f6688",
+    "low": "#3a3350",
+    "floor": "#4a4560",
+    "ceil": "#2a2638",
+    "mach": "#8b80a8",
+    "accent": "#ff4fd8",
+    "lamp": "#ffc9f4",
+    "fog": "#08050d"
+   },
+   "name": {
+    "en": "Photonics Bay",
+    "cs": "Fotonická hala"
+   }
+  },
+  {
+   "key": "ion",
+   "mut": null,
+   "pal": {
+    "wall": "#9a7b5e",
+    "low": "#5a4433",
+    "floor": "#6a5a4a",
+    "ceil": "#3a3028",
+    "mach": "#b89468",
+    "accent": "#ffb347",
+    "lamp": "#ffe2b0",
+    "fog": "#0b0705"
+   },
+   "name": {
+    "en": "Ion Trap Hall",
+    "cs": "Hala iontových pastí"
+   }
+  },
+  {
+   "key": "vault",
+   "mut": null,
+   "pal": {
+    "wall": "#62806a",
+    "low": "#33483a",
+    "floor": "#485a4e",
+    "ceil": "#26332b",
+    "mach": "#7da08a",
+    "accent": "#5dff8a",
+    "lamp": "#c8ffd8",
+    "fog": "#040a06"
+   },
+   "name": {
+    "en": "Server Vault",
+    "cs": "Serverový trezor"
+   }
+  }
+ ],
+ "dlc": [
+  {
+   "key": "dlc01",
+   "n": 1,
+   "mut": "ice",
+   "hat": "ushanka",
+   "pal": {
+    "wall": "#a9c4d6",
+    "low": "#5d7a90",
+    "floor": "#8fb0c4",
+    "ceil": "#4a6070",
+    "mach": "#c8dde8",
+    "accent": "#9ff3ff",
+    "lamp": "#e6fbff",
+    "fog": "#0a1218"
+   },
+   "name": {
+    "en": "Deep Freeze",
+    "cs": "Hluboký mráz"
+   },
+   "hatName": {
+    "en": "Ushanka",
+    "cs": "Ušanka"
+   },
+   "tag": {
+    "en": "Superconducting floors. Zero resistance. Zero grip.",
+    "cs": "Supravodivé podlahy. Nulový odpor. Nulová přilnavost."
+   },
+   "desc": {
+    "en": "The cooling loop burst and the whole sector turned into a superconductor. Nothing slows you down any more, including the walls you slide into. Master drifting around corners while anomalies glide after you.",
+    "cs": "Chladicí okruh praskl a celý sektor se proměnil v supravodič. Nic vás už nebrzdí – ani stěny, do kterých kloužete. Naučte se driftovat kolem rohů, zatímco anomálie kloužou za vámi."
+   }
+  },
+  {
+   "key": "dlc02",
+   "n": 2,
+   "mut": "lasers",
+   "hat": "prism",
+   "pal": {
+    "wall": "#5a5560",
+    "low": "#2b2830",
+    "floor": "#3b383f",
+    "ceil": "#1f1d22",
+    "mach": "#77707e",
+    "accent": "#ff2a3a",
+    "lamp": "#ff9aa0",
+    "fog": "#0a0406"
+   },
+   "name": {
+    "en": "Laser Grid",
+    "cs": "Laserová mříž"
+   },
+   "hatName": {
+    "en": "Prism Crown",
+    "cs": "Hranolová koruna"
+   },
+   "tag": {
+    "en": "Photon beams sweep the rooms. Jump or get measured.",
+    "cs": "Fotonové paprsky pročesávají místnosti. Skoč, nebo budeš změřen."
+   },
+   "desc": {
+    "en": "The photonics team left the calibration lasers running. Beams sweep back and forth across the labs, and touching one costs the whole crew coherence. Time your jumps and carry the qubits home.",
+    "cs": "Fotonický tým nechal běžet kalibrační lasery. Paprsky jezdí laboratořemi tam a zpět a každý dotyk stojí celou posádku koherenci. Načasujte skoky a doneste qubity domů."
+   }
+  },
+  {
+   "key": "dlc03",
+   "n": 3,
+   "mut": "pulse",
+   "hat": "electrode",
+   "pal": {
+    "wall": "#5f8a8a",
+    "low": "#2f4a4d",
+    "floor": "#436466",
+    "ceil": "#223436",
+    "mach": "#7fb0ad",
+    "accent": "#ffe24a",
+    "lamp": "#fff2a8",
+    "fog": "#040b0c"
+   },
+   "name": {
+    "en": "Ion Storm",
+    "cs": "Iontová bouře"
+   },
+   "hatName": {
+    "en": "Electrode Halo",
+    "cs": "Elektrodová svatozář"
+   },
+   "tag": {
+    "en": "A rotating trap field shoves the whole crew around.",
+    "cs": "Rotující pole pasti postrkuje celou posádku."
+   },
+   "desc": {
+    "en": "The ion trap electrodes are firing on their own. Every few seconds a rotating field grabs everyone and pushes them across the floor. Brace against a wall or ride the pulse to move faster than you ever could on foot.",
+    "cs": "Elektrody iontové pasti střílejí samy od sebe. Každých pár sekund rotující pole všechny popadne a tlačí je po podlaze. Zapřete se o zeď, nebo se s pulzem svezte rychleji, než byste kdy doběhli."
+   }
+  },
+  {
+   "key": "dlc04",
+   "n": 4,
+   "mut": "swap",
+   "hat": "antennas",
+   "pal": {
+    "wall": "#8a6f9a",
+    "low": "#48365a",
+    "floor": "#5c4a6c",
+    "ceil": "#2d2338",
+    "mach": "#a78fb8",
+    "accent": "#ff5fb0",
+    "lamp": "#b0d0ff",
+    "fog": "#09060d"
+   },
+   "name": {
+    "en": "Entanglement Station",
+    "cs": "Stanice provázání"
+   },
+   "hatName": {
+    "en": "Twin Antennas",
+    "cs": "Dvojité antény"
+   },
+   "tag": {
+    "en": "Quantum teleportation, whether you asked for it or not.",
+    "cs": "Kvantová teleportace, ať už o ni stojíte, nebo ne."
+   },
+   "desc": {
+    "en": "In this sector the crew is entangled. Every so often two crew members instantly swap places. Play solo and you get entangled with an anomaly instead. Keep talking, because your position is no longer only yours.",
+    "cs": "V tomto sektoru je posádka provázaná. Čas od času si dva členové okamžitě prohodí místa. Hrajete sami? Pak se provážete s anomálií. Komunikujte – vaše poloha už není jen vaše."
+   }
+  },
+  {
+   "key": "dlc05",
+   "n": 5,
+   "mut": "worlds",
+   "hat": "splitmask",
+   "pal": {
+    "wall": "#77808e",
+    "low": "#3b414c",
+    "floor": "#4f5661",
+    "ceil": "#2a2e36",
+    "mach": "#98a2b0",
+    "accent": "#ff8c2a",
+    "lamp": "#d6e6ff",
+    "fog": "#06070a"
+   },
+   "name": {
+    "en": "Many-Worlds Wing",
+    "cs": "Křídlo mnoha světů"
+   },
+   "hatName": {
+    "en": "Split Mask",
+    "cs": "Rozpůlená maska"
+   },
+   "tag": {
+    "en": "Two realities share one corridor. They take turns.",
+    "cs": "Dvě reality sdílejí jednu chodbu. Střídají se."
+   },
+   "desc": {
+    "en": "Two branches of the universe overlap here. Walls that exist in one world vanish in the other, and the worlds swap every few seconds. Plan your route around the flip or tunnel straight through a wall that should not be there.",
+    "cs": "Překrývají se tu dvě větve vesmíru. Stěny, které existují v jednom světě, v druhém mizí, a světy se každých pár sekund prohodí. Naplánujte cestu podle přepnutí, nebo se protunelujte zdí, která tam nemá být."
+   }
+  },
+  {
+   "key": "dlc06",
+   "n": 6,
+   "mut": "sealed",
+   "hat": "drill",
+   "pal": {
+    "wall": "#8e8a70",
+    "low": "#4a4838",
+    "floor": "#5e5b48",
+    "ceil": "#302e25",
+    "mach": "#b0a878",
+    "accent": "#ffd21f",
+    "lamp": "#fff0b0",
+    "fog": "#0a0905"
+   },
+   "name": {
+    "en": "Tunnel Junction",
+    "cs": "Tunelový přechod"
+   },
+   "hatName": {
+    "en": "Drill Helmet",
+    "cs": "Vrtací helma"
+   },
+   "tag": {
+    "en": "There are no doors. There never were.",
+    "cs": "Nejsou tu dveře. Nikdy tu nebyly."
+   },
+   "desc": {
+    "en": "Every room in this sector is sealed behind an energy barrier. The only way in or out is quantum tunnelling, so your tunnel recharges much faster here. The anomalies, unfortunately, were always able to walk through.",
+    "cs": "Každá místnost tohoto sektoru je uzavřená energetickou bariérou. Dovnitř i ven se dá jen kvantovým tunelováním, proto se vám tu tunel dobíjí mnohem rychleji. Anomálie bohužel bariérami procházely odjakživa."
+   }
+  },
+  {
+   "key": "dlc07",
+   "n": 7,
+   "mut": "lowgrav",
+   "hat": "bubble",
+   "pal": {
+    "wall": "#5a6690",
+    "low": "#2a3252",
+    "floor": "#3c4670",
+    "ceil": "#1c2238",
+    "mach": "#7c8cc0",
+    "accent": "#8affc8",
+    "lamp": "#c8d8ff",
+    "fog": "#03040c"
+   },
+   "name": {
+    "en": "Zero-Point Chamber",
+    "cs": "Komora nulového bodu"
+   },
+   "hatName": {
+    "en": "Bubble Helmet",
+    "cs": "Bublinová helma"
+   },
+   "tag": {
+    "en": "Low gravity and particles that pop out of nothing.",
+    "cs": "Nízká gravitace a částice, které vyskakují z ničeho."
+   },
+   "desc": {
+    "en": "The vacuum here is not empty. Gravity is a suggestion, jumps carry you across whole rooms, and virtual particles blink into existence for a few seconds. Grab them before they annihilate to restore coherence.",
+    "cs": "Vakuum tu není prázdné. Gravitace je jen doporučení, skoky vás přenesou přes celé místnosti a virtuální částice se na pár sekund zjevují z ničeho. Chyťte je, než anihilují, a obnovte koherenci."
+   }
+  },
+  {
+   "key": "dlc08",
+   "n": 8,
+   "mut": "uncertain",
+   "hat": "question",
+   "pal": {
+    "wall": "#7d8068",
+    "low": "#40423a",
+    "floor": "#55584a",
+    "ceil": "#2c2e26",
+    "mach": "#9ea086",
+    "accent": "#d6ff4a",
+    "lamp": "#f0ffc0",
+    "fog": "#080905"
+   },
+   "name": {
+    "en": "Uncertainty Ward",
+    "cs": "Oddělení neurčitosti"
+   },
+   "hatName": {
+    "en": "Question Mark",
+    "cs": "Otazník"
+   },
+   "tag": {
+    "en": "You can know where they are, or where they are going.",
+    "cs": "Můžete vědět, kde jsou, nebo kam jdou. Ne obojí."
+   },
+   "desc": {
+    "en": "Heisenberg would love this place. Unobserved anomalies no longer walk, they blink from spot to spot, and your scanner map shakes with doubt. Keep your light steady, because certainty is the only thing that holds them still.",
+    "cs": "Heisenberg by to tu miloval. Nepozorované anomálie už nechodí, ale přeskakují z místa na místo, a mapa vašeho skeneru se chvěje pochybnostmi. Držte světlo pevně – jen jistota je udrží na místě."
+   }
+  },
+  {
+   "key": "dlc09",
+   "n": 9,
+   "mut": "heat",
+   "hat": "flame",
+   "pal": {
+    "wall": "#7a5a4e",
+    "low": "#3e2a24",
+    "floor": "#54403a",
+    "ceil": "#2a1d19",
+    "mach": "#9a705e",
+    "accent": "#ff6a1f",
+    "lamp": "#ffc48a",
+    "fog": "#0c0503"
+   },
+   "name": {
+    "en": "Annealer Furnace",
+    "cs": "Žíhací pec"
+   },
+   "hatName": {
+    "en": "Flame Crest",
+    "cs": "Plamenný hřeben"
+   },
+   "tag": {
+    "en": "The floor is an energy landscape. Stay in the valleys.",
+    "cs": "Podlaha je energetická krajina. Držte se v údolích."
+   },
+   "desc": {
+    "en": "A quantum annealer is searching for the lowest energy state, and it is using the floor to do it. Waves of heat roll across the tiles and standing in them burns coherence. Hop between the cool spots and keep moving.",
+    "cs": "Kvantový žíhač hledá stav s nejnižší energií a používá k tomu podlahu. Po dlaždicích se valí vlny žáru a stát v nich pálí koherenci. Skákejte mezi chladnými místy a nezastavujte se."
+   }
+  },
+  {
+   "key": "dlc10",
+   "n": 10,
+   "mut": "conveyor",
+   "hat": "hood",
+   "pal": {
+    "wall": "#b5b8b0",
+    "low": "#6e7068",
+    "floor": "#8c8e86",
+    "ceil": "#4e504a",
+    "mach": "#d0d2c8",
+    "accent": "#ffe85a",
+    "lamp": "#fff8d8",
+    "fog": "#0b0b09"
+   },
+   "name": {
+    "en": "Qubit Foundry",
+    "cs": "Qubitová slévárna"
+   },
+   "hatName": {
+    "en": "Cleanroom Hood",
+    "cs": "Kukla do čistých prostor"
+   },
+   "tag": {
+    "en": "Every corridor is a conveyor belt. Some go your way.",
+    "cs": "Každá chodba je dopravník. Některé jedou vaším směrem."
+   },
+   "desc": {
+    "en": "Welcome to the fab, where the corridors never stop moving. Belts carry you fast in one direction and fight you in the other. Learn the flow of the factory and you will outrun anything.",
+    "cs": "Vítejte ve výrobě, kde se chodby nikdy nezastaví. Pásy vás jedním směrem vezou rychle a druhým s vámi bojují. Naučte se tok továrny a utečete čemukoli."
+   }
+  },
+  {
+   "key": "dlc11",
+   "n": 11,
+   "mut": "boxes",
+   "hat": "cardbox",
+   "pal": {
+    "wall": "#8a705a",
+    "low": "#4a3a2e",
+    "floor": "#604e40",
+    "ceil": "#30261f",
+    "mach": "#a88a6c",
+    "accent": "#c58aff",
+    "lamp": "#ffe0c0",
+    "fog": "#0a0705"
+   },
+   "name": {
+    "en": "Schrödinger's Menagerie",
+    "cs": "Schrödingerův zvěřinec"
+   },
+   "hatName": {
+    "en": "Cardboard Box",
+    "cs": "Krabice"
+   },
+   "tag": {
+    "en": "Sealed boxes. Fifty-fifty. Do you feel lucky?",
+    "cs": "Zavřené krabice. Padesát na padesát. Cítíte se šťastně?"
+   },
+   "desc": {
+    "en": "The original experiment got out of hand. Sealed boxes are scattered around the labs and nobody knows what is inside until someone opens one. Half hold a free qubit. The other half hold something that was waiting for you.",
+    "cs": "Původní experiment se trochu vymkl. Po laboratořích jsou rozeseté zavřené krabice a nikdo neví, co je uvnitř, dokud je někdo neotevře. V polovině je qubit zdarma. V druhé polovině něco, co na vás čekalo."
+   }
+  },
+  {
+   "key": "dlc12",
+   "n": 12,
+   "mut": "slowfield",
+   "hat": "droplet",
+   "pal": {
+    "wall": "#5e8f9a",
+    "low": "#2e4c55",
+    "floor": "#40686f",
+    "ceil": "#20363b",
+    "mach": "#80b4bf",
+    "accent": "#4ad0ff",
+    "lamp": "#b8f0ff",
+    "fog": "#030a0c"
+   },
+   "name": {
+    "en": "Condensate Pool",
+    "cs": "Kondenzátová lázeň"
+   },
+   "hatName": {
+    "en": "Droplet",
+    "cs": "Kapka"
+   },
+   "tag": {
+    "en": "Step into the condensate and time turns to syrup.",
+    "cs": "Vstupte do kondenzátu a čas zhoustne jako sirup."
+   },
+   "desc": {
+    "en": "Bose-Einstein condensate has leaked into the rooms. Inside the glowing fields everything slows down, you a little and the anomalies a lot. Lure them in, walk out, and enjoy the head start.",
+    "cs": "Do místností unikl Boseho-Einsteinův kondenzát. Uvnitř zářících polí se všechno zpomalí – vy trochu, anomálie hodně. Nalákejte je dovnitř, vyjděte ven a užijte si náskok."
+   }
+  },
+  {
+   "key": "dlc13",
+   "n": 13,
+   "mut": "torus",
+   "hat": "mobius",
+   "pal": {
+    "wall": "#7a6a8c",
+    "low": "#3e3349",
+    "floor": "#524660",
+    "ceil": "#292232",
+    "mach": "#9a88ae",
+    "accent": "#3dffb0",
+    "lamp": "#d8c8ff",
+    "fog": "#07050a"
+   },
+   "name": {
+    "en": "Topological Maze",
+    "cs": "Topologické bludiště"
+   },
+   "hatName": {
+    "en": "Möbius Halo",
+    "cs": "Möbiova svatozář"
+   },
+   "tag": {
+    "en": "Walk off the east edge and arrive from the west.",
+    "cs": "Odejděte východním okrajem a přijdete ze západu."
+   },
+   "desc": {
+    "en": "This sector is shaped like a doughnut. Portals on the edges of the map connect to the opposite side, which makes for brilliant shortcuts and very confusing chases. The anomalies know the topology too.",
+    "cs": "Tento sektor má tvar koblihy. Portály na okrajích mapy vedou na protější stranu, což znamená skvělé zkratky a velmi matoucí honičky. Anomálie tu topologii znají taky."
+   }
+  },
+  {
+   "key": "dlc14",
+   "n": 14,
+   "mut": "bitflip",
+   "hat": "parity",
+   "pal": {
+    "wall": "#6e6a5a",
+    "low": "#38352c",
+    "floor": "#4b483c",
+    "ceil": "#26241d",
+    "mach": "#8e8872",
+    "accent": "#ffae1f",
+    "lamp": "#ffe4a8",
+    "fog": "#090805"
+   },
+   "name": {
+    "en": "Error Correction Center",
+    "cs": "Centrum opravy chyb"
+   },
+   "hatName": {
+    "en": "Parity Cap",
+    "cs": "Paritní čepice"
+   },
+   "tag": {
+    "en": "BIT FLIP! Left is right. PHASE FLIP! Good luck.",
+    "cs": "BIT FLIP! Vlevo je vpravo. PHASE FLIP! Hodně štěstí."
+   },
+   "desc": {
+    "en": "The error correction is broken, so the errors happen to you. A bit flip reverses your movement controls. A phase flip inverts the colours of the world and your mouse. A warning sounds first. It does not help much.",
+    "cs": "Oprava chyb je rozbitá, takže se chyby dějí vám. Bit flip obrátí ovládání pohybu. Phase flip invertuje barvy světa i vaši myš. Předem zazní varování. Moc nepomůže."
+   }
+  },
+  {
+   "key": "dlc15",
+   "n": 15,
+   "mut": "dark",
+   "hat": "mohawk",
+   "pal": {
+    "wall": "#4a5568",
+    "low": "#232a36",
+    "floor": "#2f3745",
+    "ceil": "#161b23",
+    "mach": "#647088",
+    "accent": "#2a9dff",
+    "lamp": "#6ab8ff",
+    "fog": "#010204"
+   },
+   "name": {
+    "en": "Dark Fiber",
+    "cs": "Temné vlákno"
+   },
+   "hatName": {
+    "en": "Fiber Mohawk",
+    "cs": "Optické číro"
+   },
+   "tag": {
+    "en": "No lamps. Only your beam and a thread of light home.",
+    "cs": "Žádné lampy. Jen váš paprsek a nitka světla domů."
+   },
+   "desc": {
+    "en": "The power is out across the quantum network. There is no light at all except your own, and thieves are invisible until your beam finds them. Glowing fibre on the floor always leads back to the core.",
+    "cs": "V celé kvantové síti vypadl proud. Jediné světlo je to vaše a zloději jsou neviditelní, dokud je nenajde váš paprsek. Svítící vlákno na podlaze vždy vede zpět k jádru."
+   }
+  },
+  {
+   "key": "dlc16",
+   "n": 16,
+   "mut": "echo",
+   "hat": "hourglass",
+   "pal": {
+    "wall": "#6c5e90",
+    "low": "#362e4c",
+    "floor": "#483e64",
+    "ceil": "#241f34",
+    "mach": "#8a7ab4",
+    "accent": "#ffd45a",
+    "lamp": "#e8d8ff",
+    "fog": "#06040b"
+   },
+   "name": {
+    "en": "Time Crystal Vault",
+    "cs": "Trezor časového krystalu"
+   },
+   "hatName": {
+    "en": "Hourglass",
+    "cs": "Přesýpací hodiny"
+   },
+   "tag": {
+    "en": "Your echo from six seconds ago still has a flashlight.",
+    "cs": "Vaše ozvěna z doby před šesti sekundami má stále baterku."
+   },
+   "desc": {
+    "en": "A time crystal repeats the recent past. A ghostly echo follows each crew member, replaying what they did six seconds ago, and the light of an echo still freezes anomalies. Aim your beam now to protect yourself later.",
+    "cs": "Časový krystal opakuje nedávnou minulost. Každého člena posádky následuje přízračná ozvěna, která přehrává, co dělal před šesti sekundami – a světlo ozvěny stále mrazí anomálie. Miřte teď, ochráníte se později."
+   }
+  },
+  {
+   "key": "dlc17",
+   "n": 17,
+   "mut": "strobe",
+   "hat": "disco",
+   "pal": {
+    "wall": "#5e5a70",
+    "low": "#2e2b3a",
+    "floor": "#3e3b4c",
+    "ceil": "#1e1c28",
+    "mach": "#7c7692",
+    "accent": "#ff3df0",
+    "lamp": "#ffffff",
+    "fog": "#050408"
+   },
+   "name": {
+    "en": "Quantum Dot Disco",
+    "cs": "Disko kvantových teček"
+   },
+   "hatName": {
+    "en": "Disco Ball",
+    "cs": "Disko koule"
+   },
+   "tag": {
+    "en": "The lights follow the beat. So do the blackouts.",
+    "cs": "Světla jedou do rytmu. Výpadky taky."
+   },
+   "desc": {
+    "en": "Somebody wired the quantum dot display to the sound system. The lab pulses with colour, and on every drop all the lights, flashlights included, cut out for a moment. Anomalies love the drop.",
+    "cs": "Někdo propojil displej z kvantových teček se zvukovou aparaturou. Laboratoř pulzuje barvami a při každém dropu na chvíli zhasnou všechna světla včetně baterek. Anomálie drop milují."
+   }
+  },
+  {
+   "key": "dlc18",
+   "n": 18,
+   "mut": "flood",
+   "hat": "diver",
+   "pal": {
+    "wall": "#4e7a86",
+    "low": "#26414a",
+    "floor": "#36585f",
+    "ceil": "#1b2e33",
+    "mach": "#6a9aa6",
+    "accent": "#3d7bff",
+    "lamp": "#a8d0ff",
+    "fog": "#020709"
+   },
+   "name": {
+    "en": "Neutrino Tank",
+    "cs": "Neutrinová nádrž"
+   },
+   "hatName": {
+    "en": "Diver Helmet",
+    "cs": "Potápěčská helma"
+   },
+   "tag": {
+    "en": "Flooded halls and things that ignore walls.",
+    "cs": "Zatopené haly a věci, které ignorují stěny."
+   },
+   "desc": {
+    "en": "The detector tank has flooded the sector with ultra-pure water. Wading slows you down, and the anomalies here behave like neutrinos: slow, patient, and able to drift straight through solid walls. Only light stops them.",
+    "cs": "Nádrž detektoru zatopila sektor ultračistou vodou. Brodění vás zpomaluje a anomálie se tu chovají jako neutrina: pomalé, trpělivé a schopné proplout pevnou zdí. Zastaví je jen světlo."
+   }
+  },
+  {
+   "key": "dlc19",
+   "n": 19,
+   "mut": "wave",
+   "hat": "visor",
+   "pal": {
+    "wall": "#6a7480",
+    "low": "#343a42",
+    "floor": "#474e58",
+    "ceil": "#23272d",
+    "mach": "#8a96a4",
+    "accent": "#39ff7a",
+    "lamp": "#d0ffe0",
+    "fog": "#050607"
+   },
+   "name": {
+    "en": "Gravity Wave Lab",
+    "cs": "Laboratoř gravitačních vln"
+   },
+   "hatName": {
+    "en": "Interferometer Visor",
+    "cs": "Interferometrický průzor"
+   },
+   "tag": {
+    "en": "Space itself rolls through the lab. Hold on.",
+    "cs": "Laboratoří se valí sám prostor. Držte se."
+   },
+   "desc": {
+    "en": "The interferometer finally detected something, and it is coming this way. Gravitational wavefronts sweep the whole map and throw everyone in their path. Tunnel through the front at the right moment or go flying.",
+    "cs": "Interferometr konečně něco zachytil a blíží se to sem. Čela gravitačních vln přejíždějí celou mapu a odhazují každého, kdo jim stojí v cestě. Protunelujte se čelem vlny ve správnou chvíli, nebo poletíte."
+   }
+  },
+  {
+   "key": "dlc20",
+   "n": 20,
+   "mut": "blackhole",
+   "hat": "accretion",
+   "pal": {
+    "wall": "#5c4e58",
+    "low": "#2c252a",
+    "floor": "#3d343a",
+    "ceil": "#1c181b",
+    "mach": "#7a6874",
+    "accent": "#ff7a2a",
+    "lamp": "#ffd0a0",
+    "fog": "#060304"
+   },
+   "name": {
+    "en": "Singularity Core",
+    "cs": "Jádro singularity"
+   },
+   "hatName": {
+    "en": "Accretion Halo",
+    "cs": "Akreční svatozář"
+   },
+   "tag": {
+    "en": "A micro black hole is loose. It is not staying put.",
+    "cs": "Mikroskopická černá díra je na svobodě. A nestojí na místě."
+   },
+   "desc": {
+    "en": "The final experiment worked too well. A micro black hole orbits through the sector, passing through walls and dragging everything towards it. Get too close and you are scattered. Use its pull to slingshot down the corridors.",
+    "cs": "Poslední experiment se povedl až moc. Sektorem obíhá mikroskopická černá díra, prochází stěnami a všechno k sobě táhne. Přiblížíte-li se moc, rozptýlí vás. Využijte její tah jako prak a prosvištěte chodbami."
+   }
+  }
+ ]
+}

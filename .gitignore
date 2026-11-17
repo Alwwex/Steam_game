@@ -1,0 +1,10 @@
+node_modules/
+dist/
+app/game.js
+app/preview.js
+*.log
+.DS_Store
+steam/sdk/
+steam/content/
+steam/output/
+store-assets/_tmp/

@@ -1,0 +1,32 @@
+{
+  "name": "qubit-crew",
+  "productName": "Qubit Crew",
+  "version": "0.1.0",
+  "description": "Qubit Crew - a co-op game about cats, flashlights and a broken quantum computer",
+  "main": "electron/main.js",
+  "private": true,
+  "author": "Qubit Crew Team",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "node tools/build.js",
+    "watch": "node tools/build.js --watch",
+    "start": "npm run build && electron .",
+    "dev": "npm run build && node tools/dev-server.js",
+    "server": "node server/relay.js",
+    "test": "npm run build && node tools/test-all.js",
+    "dist": "npm run build && electron-builder --dir",
+    "dist:win": "npm run build && electron-builder --win --dir",
+    "dist:linux": "npm run build && electron-builder --linux --dir",
+    "dist:mac": "npm run build && electron-builder --mac --dir"
+  },
+  "dependencies": {
+    "steamworks.js": "^0.4.0",
+    "ws": "^8.23.0"
+  },
+  "devDependencies": {
+    "electron": "^45.3.3",
+    "electron-builder": "^26.18.0",
+    "esbuild": "^0.28.2",
+    "three": "^0.187.0"
+  }
+}
