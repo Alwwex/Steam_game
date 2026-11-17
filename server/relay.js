@@ -49,7 +49,11 @@ function startRelay(port = 7777, opts = {}) {
         if (m.t === 'join') {
           if (ws.room) return;
           const name = String(m.room || 'main').slice(0, 32);
+          const role = m.role === 'client' ? 'client' : 'host';
           let room = rooms.get(name);
+          // A room exists exactly as long as its host is connected.
+          if (role === 'host' && room) { send(ws, { t: 'closed', reason: 'host-exists' }); ws.close(); return; }
+          if (role === 'client' && !room) { send(ws, { t: 'closed', reason: 'no-host' }); ws.close(); return; }
           if (!room) { room = { name, host: null, peers: new Map() }; rooms.set(name, room); }
           if (room.peers.size >= maxPeers) { send(ws, { t: 'closed', reason: 'full' }); ws.close(); return; }
           ws.id = String(nextId++); ws.room = room;

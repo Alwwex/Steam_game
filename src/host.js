@@ -24,6 +24,7 @@ export class HostSim {
     this.mode = 'base';
     this.obsList = [];
     this.lastSeer = null;
+    this.paused = false;
     this.resetRun();
     session.onHostMsg = (from, m) => this.onMsg(from, m);
     session.onPeerLeave = (id) => this.removePlayer(id);
@@ -273,7 +274,7 @@ export class HostSim {
     const now = performance.now();
     const dt = Math.min(0.25, (now - this.last) / 1000);
     this.last = now;
-    if (this.phase !== 'play') return;
+    if (this.phase !== 'play' || this.paused) return;
     this.tick(dt);
     if (this.phase !== 'play') return;
     this.snapAcc += dt;

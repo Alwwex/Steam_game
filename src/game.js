@@ -31,7 +31,7 @@ export class Game {
     this.t = 0; this.coh = 100; this.got = 0; this.quota = 1; this.ready = false; this.credits = 0; this.shift = 0;
     this.up = {}; this.alive = true; this.safe = true; this.seq = 0;
     this.stateAcc = 0; this.hudAcc = 0; this.mapAcc = 0; this.exploreAcc = 0; this.flashV = 0; this.lobbyT = 0;
-    this.lastAlert = null; this.hints = []; this.wasReady = false;
+    this.lastAlert = null; this.hints = []; this.wasReady = false; this.paused = false; this.lobbyCamX = 0;
     this.lightSrc = [];
     this.link = new THREE.Line(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0, 0, 0, 0], 3)),
       new THREE.LineBasicMaterial({ color: QCOL[2], transparent: true, opacity: 0.6 }));
@@ -45,7 +45,7 @@ export class Game {
   }
 
   detach() {
-    this.disposeLevel(); this.session = null; this.lobby = null; this.state = 'idle';
+    this.disposeLevel(); this.session = null; this.lobby = null; this.state = 'idle'; this.paused = false;
   }
 
   act(o) { if (this.session) { o.t = 'a'; this.session.toHost(o); } }
@@ -55,16 +55,25 @@ export class Game {
 
   // First-person device: a chunky flashlight with a row of lights showing carried qubits.
   makeViewModel() {
-    const L = new MeshBuilder(), G = new MeshBuilder();
-    L.part(GEO.box, col(0x2c3038), 0, 0, 0, 0.09, 0.09, 0.3);
-    L.part(GEO.cyl8, col(0x4a5058), 0, 0, -0.18, 0.13, 0.08, 0.13, Math.PI / 2, 0, 0);
-    L.part(GEO.box, col(0xf2c230), 0, 0.05, 0.04, 0.095, 0.02, 0.1);
-    G.part(GEO.cyl8, col(0xfff1d8), 0, 0, -0.225, 0.1, 0.01, 0.1, Math.PI / 2, 0, 0);
-    const vm = this.viewModel = toGroup(L, G, { castShadow: false });
-    vm.position.set(0.2, -0.17, -0.34);
+    // Unlit and drawn on top of everything, so it never clips into walls or gets blown out by the flashlight.
+    const G = new MeshBuilder();
+    G.part(GEO.cyl8, col(0x6a7480), 0, 0, -0.085, 0.085, 0.05, 0.085, Math.PI / 2, 0, 0);
+    G.part(GEO.cyl8, col(0xfff1d8), 0, 0, -0.111, 0.068, 0.006, 0.068, Math.PI / 2, 0, 0);
+    G.part(GEO.box, col(0x2c3038), 0, 0, 0, 0.06, 0.06, 0.13);
+    G.part(GEO.box, col(0x4a5260), 0, 0.031, 0, 0.044, 0.004, 0.12);
+    G.part(GEO.box, col(0xf2c230), 0, 0.034, 0.03, 0.062, 0.01, 0.04);
+    const mat = new THREE.MeshBasicMaterial({ vertexColors: true, depthTest: false, depthWrite: false, fog: false });
+    const vm = this.viewModel = toGroup(null, G, { castShadow: false });
+    vm.traverse((o) => { if (o.isMesh) { o.material = mat; o.renderOrder = 50; } });
+    vm.position.set(0.17, -0.15, -0.42);
+    vm.rotation.y = 0.06;
     this.vmDots = [];
-    const dg = new THREE.BoxGeometry(0.018, 0.012, 0.03), dm = new THREE.MeshBasicMaterial({ color: QCOL[0] });
-    for (let i = 0; i < 5; i++) { const d = new THREE.Mesh(dg, dm); d.position.set(-0.03, 0.062, 0.1 - i * 0.035); vm.add(d); this.vmDots.push(d); }
+    const dg = new THREE.BoxGeometry(0.014, 0.01, 0.024);
+    const dm = new THREE.MeshBasicMaterial({ color: QCOL[0], depthTest: false, depthWrite: false, fog: false });
+    for (let i = 0; i < 5; i++) {
+      const d = new THREE.Mesh(dg, dm); d.renderOrder = 51;
+      d.position.set(0, 0.04, 0.045 - i * 0.022); vm.add(d); this.vmDots.push(d);
+    }
     vm.visible = false;
     this.gfx.camera.add(vm);
   }
@@ -73,6 +82,7 @@ export class Game {
 
   onMsg(m) {
     switch (m.t) {
+      case 'wel': this.app.onWelcome(m); break;
       case 'lob': this.lobby = m; this.app.onLobby(m); this.syncCosmetics(); break;
       case 'start': this.startLevel(m); break;
       case 's': if (this.state === 'play') this.onSnap(m); break;
@@ -324,7 +334,7 @@ export class Game {
         pa.burst(this.L.core.x, 1.2, this.L.core.z, acc, 30, 3.5, 1.0);
         au.sfx('deposit', this.L.core.x, this.L.core.z);
         if (m.bonus) { this.ui.toast(tr('toast.entangled', { n: m.bonus }), 'good'); au.sfx('bonus'); }
-        if (mine) this.app.stat('delivered');
+        if (mine) { this.app.stat('delivered'); if (m.bonus) this.app.stat('entangled'); }
         break;
       case 'ready': this.ui.toast(tr('toast.ready'), 'good', 6); au.sfx('ready'); break;
       case 'hit':
@@ -409,7 +419,7 @@ export class Game {
 
   frame(dt) {
     if (this.state === 'lobby') this.frameLobby(dt);
-    else if (this.state === 'play') this.framePlay(dt);
+    else if (this.state === 'play') { if (!this.paused) this.framePlay(dt); }
     else if (this.L) this.frameIdle(dt);
     this.flashV = Math.max(0, this.flashV - dt * 2.2);
     this.gfx.fx.flash = this.flashV * 0.5;
@@ -421,10 +431,10 @@ export class Game {
   frameLobby(dt) {
     this.lobbyT += dt;
     const L = this.L, cam = this.gfx.camera, t = this.lobbyT;
-    cam.position.set(L.core.x + Math.sin(t * 0.25) * 0.5, 1.25 + Math.sin(t * 0.4) * 0.05, L.core.z + 6.4);
+    cam.position.set(L.core.x + this.lobbyCamX + Math.sin(t * 0.25) * 0.4, 1.25 + Math.sin(t * 0.4) * 0.05, L.core.z + 6.4);
     cam.rotation.set(0.04, Math.sin(t * 0.25) * 0.05, 0);
     cam.fov = 62; cam.updateProjectionMatrix();
-    this.gfx.flash.intensity = 30; this.gfx.flash.distance = 20; this.gfx.flash.angle = 0.75;
+    this.gfx.flash.intensity = 15; this.gfx.flash.distance = 20; this.gfx.flash.angle = 0.75;
     for (const c of this.lobbyCats.values()) c.cat.update(dt, 0, Math.sin(t * 0.7 + c.color) * 0.1, t, false);
     this.core.update(dt); this.core.setReady(true, t);
     if (Math.random() < 0.15) this.parts.burst(L.core.x, 1.25, L.core.z, this.accentHex, 1, 0.6, 1.5);
@@ -436,7 +446,7 @@ export class Game {
   frameIdle(dt) {
     this.core.update(dt);
     const fx = this.gfx.fx; fx.glitch = this.state === 'over' ? 0.6 : 0; fx.invert = 0; fx.warp = 0;
-    this.gfx.flash.intensity = this.state === 'over' ? 0 : 30;
+    this.gfx.flash.intensity = this.state === 'over' ? 0 : 15;
   }
 
   framePlay(dt) {
@@ -471,12 +481,12 @@ export class Game {
     const fov = 76 + (me.sprinting ? 6 : 0) + m.warp * 5;
     if (Math.abs(cam.fov - fov) > 0.1) { cam.fov += (fov - cam.fov) * Math.min(1, dt * 8); cam.updateProjectionMatrix(); }
     const lens = this.up.lens || 0;
-    gfx.flash.intensity = lightOn ? 34 : 0;
+    gfx.flash.intensity = lightOn ? 17 : 0;
     gfx.flash.distance = BEAM.RANGE + 4 + 3 * lens;
     gfx.flash.angle = BEAM.HALF_ANGLE * (1 + 0.12 * lens) + 0.1;
     this.viewModel.visible = this.alive;
     const sway = Math.min(1, me.speed / P.WALK);
-    this.viewModel.position.set(0.2 + Math.cos(me.bob) * 0.008 * sway, -0.17 + Math.sin(me.bob * 2) * 0.008 * sway, -0.34);
+    this.viewModel.position.set(0.17 + Math.cos(me.bob) * 0.006 * sway, -0.15 + Math.sin(me.bob * 2) * 0.006 * sway, -0.42);
     for (let i = 0; i < 5; i++) this.vmDots[i].visible = i < me.carry;
     au.setListener(me.x, me.z, me.yaw);
 
@@ -617,7 +627,7 @@ export class Game {
     this.ui.hud({
       coh: this.coh, got: this.got, quota: this.quota, ready: this.ready, shift: this.shift, sector: pick(this.sector.name),
       carry: me.carry, cap: P.CARRY + (this.up.carry || 0), tunnel: 1 - clamp(me.tunnelCd / Math.max(0.01, stats.tunnelCd), 0, 1),
-      stamina: clamp(me.stamina / stats.stamina, 0, 1), tired: me.tired, alive: this.alive, safe: this.safe, rel, dist,
+      stamina: clamp(me.stamina / stats.stamina, 0, 1), tired: me.tired, alive: this.alive, safe: dist < BAL.safeRadius - 0.4, rel, dist,
       prompt: prompt ? tr(prompt, { n: this.quota - this.got }) : null, players, light: me.lightOn && !m.lightOff, credits: this.credits,
     });
   }

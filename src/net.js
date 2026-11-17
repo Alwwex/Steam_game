@@ -49,13 +49,13 @@ export class Session {
 
 export class WsTransport {
   // Resolves once the relay has assigned us an id.
-  static connect(url, room = 'main', timeoutMs = 7000) {
+  static connect(url, room = 'main', role = 'client', timeoutMs = 7000) {
     return new Promise((resolve, reject) => {
       let done = false, ws;
       const fail = (why) => { if (done) return; done = true; try { ws.close(); } catch (e) { /* ignore */ } reject(new Error(why)); };
       try { ws = new WebSocket(url); } catch (e) { reject(new Error('bad-address')); return; }
       const timer = setTimeout(() => fail('timeout'), timeoutMs);
-      ws.onopen = () => ws.send(JSON.stringify({ t: 'join', room }));
+      ws.onopen = () => ws.send(JSON.stringify({ t: 'join', room, role }));
       ws.onerror = () => { clearTimeout(timer); fail('unreachable'); };
       ws.onclose = () => { clearTimeout(timer); fail('closed'); };
       ws.onmessage = (e) => {

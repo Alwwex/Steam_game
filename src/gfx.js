@@ -89,12 +89,12 @@ export class Gfx {
     this.scene.add(this.ambient);
 
     // The player's flashlight lives in camera space and is the only shadow caster.
-    const fl = this.flash = new THREE.SpotLight(0xfff1d8, 0, 20, 0.52, 0.5, 1.0);
+    const fl = this.flash = new THREE.SpotLight(0xfff1d8, 0, 20, 0.52, 0.5, 0.6);
     fl.castShadow = true;
     fl.shadow.mapSize.set(512, 512);
     fl.shadow.camera.near = 0.3; fl.shadow.camera.far = 26;
     fl.shadow.bias = -0.004;
-    fl.position.set(0.2, -0.16, 0.05);
+    fl.position.set(0.2, -0.16, 0.45);   // a little behind the eye, so walls right in front do not blow out
     fl.target.position.set(0.02, -0.03, -1);
     this.camera.add(fl); this.camera.add(fl.target);
 
@@ -154,7 +154,7 @@ export class Gfx {
     this.scene.fog.near = opts.fogNear ?? 3;
     this.scene.fog.far = opts.fogFar ?? 34;
     this.ambient.color.set(pal.wall).lerp(new THREE.Color(pal.accent), 0.25);
-    this.ambient.intensity = opts.ambient ?? 0.16;
+    this.ambient.intensity = opts.ambient ?? 0.22;
   }
 
   // sources: [{x,y,z,c,i,d}] -> the closest ones to the camera get a real light.

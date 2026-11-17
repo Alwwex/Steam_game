@@ -388,7 +388,7 @@ export class Particles {
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.BufferAttribute(this.pos, 3));
     g.setAttribute('color', new THREE.BufferAttribute(this.colr, 3));
-    this.points = new THREE.Points(g, new THREE.PointsMaterial({ size: 0.1, vertexColors: true, sizeAttenuation: true }));
+    this.points = new THREE.Points(g, new THREE.PointsMaterial({ size: 0.05, vertexColors: true, sizeAttenuation: true }));
     this.points.frustumCulled = false;
     scene.add(this.points);
     this._c = new THREE.Color();
