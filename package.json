@@ -62,6 +62,10 @@
         {
           "from": "node_modules/steamworks.js/dist/win64/steam_api64.dll",
           "to": "steam_api64.dll"
+        },
+        {
+          "from": "THIRD_PARTY_NOTICES.txt",
+          "to": "THIRD_PARTY_NOTICES.txt"
         }
       ]
     },
@@ -73,6 +77,10 @@
         {
           "from": "node_modules/steamworks.js/dist/linux64/libsteam_api.so",
           "to": "libsteam_api.so"
+        },
+        {
+          "from": "THIRD_PARTY_NOTICES.txt",
+          "to": "THIRD_PARTY_NOTICES.txt"
         }
       ]
     },
@@ -84,6 +92,10 @@
         {
           "from": "node_modules/steamworks.js/dist/osx/libsteam_api.dylib",
           "to": "MacOS/libsteam_api.dylib"
+        },
+        {
+          "from": "THIRD_PARTY_NOTICES.txt",
+          "to": "Resources/THIRD_PARTY_NOTICES.txt"
         }
       ]
     },

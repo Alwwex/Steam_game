@@ -108,7 +108,7 @@ export class Gfx {
 
     this.pixelH = 360;
     this.wobble = true;
-    this.fx = { glitch: 0, invert: 0, flash: 0, vig: 1, warp: 0, exposure: 1.25, tint: new THREE.Color(1, 1, 1) };
+    this.fx = { glitch: 0, invert: 0, flash: 0, vig: 1, warp: 0, exposure: 1.4, tint: new THREE.Color(1, 1, 1) };
     this.time = 0;
     this.postScene = new THREE.Scene();
     this.postCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
@@ -154,7 +154,7 @@ export class Gfx {
     this.scene.fog.near = opts.fogNear ?? 3;
     this.scene.fog.far = opts.fogFar ?? 34;
     this.ambient.color.set(pal.wall).lerp(new THREE.Color(pal.accent), 0.25);
-    this.ambient.intensity = opts.ambient ?? 0.22;
+    this.ambient.intensity = opts.ambient ?? 0.3;
   }
 
   // sources: [{x,y,z,c,i,d}] -> the closest ones to the camera get a real light.

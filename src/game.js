@@ -67,6 +67,7 @@ export class Game {
     vm.traverse((o) => { if (o.isMesh) { o.material = mat; o.renderOrder = 50; } });
     vm.position.set(0.17, -0.15, -0.42);
     vm.rotation.y = 0.06;
+    vm.scale.setScalar(0.82);
     this.vmDots = [];
     const dg = new THREE.BoxGeometry(0.014, 0.01, 0.024);
     const dm = new THREE.MeshBasicMaterial({ color: QCOL[0], depthTest: false, depthWrite: false, fog: false });
@@ -132,7 +133,7 @@ export class Game {
     this.root.add(buildLevelMesh(L, this.pal, { noLamps: mut.noLamps }));
     this.core = makeCore(this.pal); this.core.group.position.set(L.core.x, 0, L.core.z); this.root.add(this.core.group);
     const lamp = new THREE.Color(this.pal.lamp).getHex(), acc = new THREE.Color(this.pal.accent).getHex();
-    this.lamps = mut.noLamps ? [] : L.lamps.filter((l) => !l.core).map((l) => ({ x: l.x, y: WALL_H - 0.7, z: l.z, c: lamp, i: 9, d: 12, base: lamp }));
+    this.lamps = mut.noLamps ? [] : L.lamps.filter((l) => !l.core).map((l) => ({ x: l.x, y: WALL_H - 0.7, z: l.z, c: lamp, i: 11, d: 13, base: lamp }));
     this.coreLight = { x: L.core.x, y: 1.5, z: L.core.z, c: acc, i: 13, d: 13, pri: 60 };
     this.accentHex = acc;
   }
@@ -152,6 +153,7 @@ export class Game {
     this.explored = new Uint8Array(L.w * L.h);
     this.core.setProgress(this.got / this.quota);
     this.state = 'play';
+    this.primed = false; this.hudAcc = 1; this.mapAcc = 1; this.exploreAcc = 1;
     this.viewModel.visible = true;
     this.hints = this.shift === 1 ? [[1.5, 'hint.move'], [8, 'hint.light'], [17, 'hint.carry'], [27, 'hint.lurker'], [38, 'hint.tunnel']] : [];
     if (this.mut && sector.n) this.hints.push([3, null, pick(sector.tag)]);
@@ -419,7 +421,11 @@ export class Game {
 
   frame(dt) {
     if (this.state === 'lobby') this.frameLobby(dt);
-    else if (this.state === 'play') { if (!this.paused) this.framePlay(dt); }
+    else if (this.state === 'play') {
+      if (!this.paused) this.framePlay(dt);
+      else if (!this.primed) this.framePlay(0);   // fill the HUD and map even if the shift starts paused
+      this.primed = true;
+    }
     else if (this.L) this.frameIdle(dt);
     this.flashV = Math.max(0, this.flashV - dt * 2.2);
     this.gfx.fx.flash = this.flashV * 0.5;
@@ -517,7 +523,7 @@ export class Game {
       const o = this._lampOut || (this._lampOut = { color: new THREE.Color(), mul: 1 });
       mut.lamp(t, o);
       const hex = o.color.getHex();
-      for (const l of this.lamps) { l.c = hex; l.i = 9 * o.mul; src.push(l); }
+      for (const l of this.lamps) { l.c = hex; l.i = 11 * o.mul; src.push(l); }
       if (mut.beat) au.beat(t, false);
     } else for (const l of this.lamps) src.push(l);
     src.push(this.coreLight);

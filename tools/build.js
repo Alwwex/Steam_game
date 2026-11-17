@@ -18,7 +18,10 @@ const options = {
   define: { __VERSION__: JSON.stringify(pkg.version), __DEV__: JSON.stringify(dev) },
   logLevel: 'info',
 };
-if (process.argv.includes('--preview')) options.entryPoints.preview = path.join(root, 'tools', 'preview.js');
+if (process.argv.includes('--preview')) {
+  options.entryPoints.preview = path.join(root, 'tools', 'preview.js');
+  options.entryPoints.studio = path.join(root, 'tools', 'studio.js');
+}
 
 (async () => {
   if (watch) {

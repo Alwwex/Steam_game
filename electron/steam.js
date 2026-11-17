@@ -131,7 +131,9 @@ function openStore(key) {
 
 function achieve(id) {
   if (!client) return;
-  try { client.achievement.activate(String(id)); } catch (e) { /* unknown achievement name */ }
+  try {
+    if (client.achievement.activate(String(id))) client.stats.store();   // upload right away
+  } catch (e) { /* unknown achievement name */ }
 }
 
 module.exports = {

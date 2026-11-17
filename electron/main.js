@@ -21,7 +21,6 @@ function lobbyFromArgs(argv) {
 
 const config = loadConfig();
 const steamState = process.env.QC_NO_STEAM ? { ok: false } : steam.init(config, { dev: DEV });
-if (steamState.restarting) app.quit();
 
 let win = null;
 let relay = null;
@@ -89,7 +88,11 @@ ipcMain.on('steam:broadcast', (e, text, reliable) => steam.broadcast(String(text
 
 // ---------------------------------------------------------------- lifecycle
 
-app.whenReady().then(createWindow);
+if (steamState.restarting) {
+  app.quit();   // Steam is starting a fresh copy of the game
+} else {
+  app.whenReady().then(createWindow);
+}
 app.on('window-all-closed', () => app.quit());
 app.on('before-quit', () => {
   steam.shutdown();
